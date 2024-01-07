@@ -1,4 +1,4 @@
-name: 'Hugo Content from Issues'
+name: 'Create Hugo Content from Issues'
 description: 'Create new content for Hugo website from GitHub issues'
 inputs:
   git-commiter-name: # Name of the commiter
