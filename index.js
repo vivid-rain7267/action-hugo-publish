@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import fs from 'fs';
-import { post , newPost } from './utils/hugo.js';
+import { post , createPost } from './utils/hugo.js';
+import * as execSync from 'child_process';
 
 try {
     const labels = github.context.payload.issue.labels.map(label => label.name);
@@ -13,17 +13,26 @@ try {
     const created_at = github.context.payload.issue.created_at;
 
     if (type === '' || type === undefined) {
-        type = 'post';
+        type = 'posts';
     }
 
-    console.log(`Labels: ${labels}`);
-    console.log(`Title: ${title}`);
-    console.log(`Body: ${body}`);
-    console.log(`Tags: ${tags}`);
-    console.log(`Type: ${type}`);
-    console.log(`Slug: ${slug}`);
-    console.log(`Created at: ${new Date(created_at).toISOString()}`);
+    post.title = title;
+    post.date = created_at
+    post.tags = tags;
+    post.slug = slug;
+    post.content = body;
+
+    createPost(post, "content");
+
+    createCommit(post.title);
 
 } catch (error) {
     core.setFailed(error.message);
+}
+
+const createCommit = (title) => {
+    execSync('git config --global user.name "Hugo Publish Bot"');
+    execSync('git config --global user.email "hugo-publish@github.com"');
+    execSync('git add .');
+    execSync('git commit -m "New post: ' + title + '"');
 }

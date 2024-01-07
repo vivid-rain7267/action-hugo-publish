@@ -5,42 +5,30 @@ export const post = {
     title: '',
     date: '',
     content: '',
-    type: ''
+    type: '',
+    tags: [],
+    slug: ''
 }
 
-const generatePosts = (posts) => {
-    posts.forEach(element => {
-        console.log(`Generating ${element.title}...`);
-        let destination = path.join('content', 'posts', element.slug);
-        if (!fs.existsSync(destination)) {
-            fs.mkdirSync(destination, { recursive: true });
-        }
+export const createPost = (post, contentFolder = "content") => {
+    console.log(`Generating ${post.title}...`);
 
-        let content = `---
-            title: ${element.title}
-            date: ${new Date(element.created_at).toISOString()}
-            draft: false
-            toc: false
-            ---
-
-            ${element.html}
-        `;
-
-        let fileName = path.join(destination, 'index.html');
-        fs.writeFileSync(fileName, content.replace(/^\s+/gm, ''));
-    });
-};
-
-export const newPost = (post) => {
     let content = `---
             title: ${post.title}
             date: ${new Date(post.date).toISOString()}
             draft: false
             toc: false
+            tags: ${JSON.stringify(post.tags)}
             ---
 
             ${post.content}
         `;
 
-    return content;
+    let path = path.join(contentFolder, post.type, post.slug);
+
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path, { recursive: true });
+    }
+
+    fs.writeFileSync(path.join(path, "index.md"), content);
 }
