@@ -28,7 +28,7 @@ exports.createPost = (post, contentFolder = "content") => {
     if (post.type !== 'page') {
         contentPath = path.join(contentFolder, post.type, post.slug);
     } else {
-        contentPath = path.join(contentFolder, post.type);
+        contentPath = path.join(contentFolder, post.slug);
     }
     
     if (!fs.existsSync(contentPath)) {
