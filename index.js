@@ -12,16 +12,17 @@ try {
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
     const created_at = github.context.payload.issue.created_at;
 
-    if (type === '' || type === undefined) {
-        type = 'posts';
-    }
+    
 
     post.title = title;
     post.date = created_at
     post.tags = tags;
     post.slug = slug;
     post.content = body;
-    post.type = type;
+
+    if (type !== '' || type !== undefined) {
+        post.type = type;
+    }
 
     createPost(post, "content");
 
