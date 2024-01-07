@@ -1,0 +1,5 @@
+name: 'Hugo Publish'
+description: 'Create new content for Hugo website based on issues'
+runs:
+  using: 'node20'
+  main: 'index.js'
