@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
+const fs = require('fs');
+const path = require('path');
 
-export const post = {
+exports.post = {
     title: '',
     date: '',
     content: '',
@@ -10,7 +10,7 @@ export const post = {
     slug: ''
 }
 
-export const createPost = (post, contentFolder = "content") => {
+exports.createPost = (post, contentFolder = "content") => {
     console.log(`Generating ${post.title}...`);
 
     let content = `---

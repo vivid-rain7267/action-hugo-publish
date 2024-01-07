@@ -1,7 +1,7 @@
-import * as core from '@actions/core';
-import * as github from '@actions/github';
-import { post , createPost } from './utils/hugo.js';
-import * as execSync from 'child_process';
+const core = require('@actions/core');
+const github = require('@actions/github');
+const { post, createPost } = require('./utils/hugo.js');
+const { execSync } = require('child_process');
 
 try {
     const labels = github.context.payload.issue.labels.map(label => label.name);
@@ -30,7 +30,7 @@ try {
     core.setFailed(error.message);
 }
 
-const createCommit = (title) => {
+function createCommit(title) {
     execSync('git config --global user.name "Hugo Publish Bot"');
     execSync('git config --global user.email "hugo-publish@github.com"');
     execSync('git add .');
