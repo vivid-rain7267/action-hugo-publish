@@ -20,7 +20,7 @@ try {
     post.slug = slug;
     post.content = body;
 
-    if (type !== '' || type !== undefined) {
+    if (typeof type !== "undefined" && type !== '') {
         post.type = type;
     }
 
