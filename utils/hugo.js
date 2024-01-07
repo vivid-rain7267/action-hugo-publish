@@ -13,16 +13,16 @@ exports.post = {
 exports.createPost = (post, contentFolder = "content") => {
     let contentPath = '';
 
-    let content = `---
+    let metadata = `---
             title: ${post.title}
             date: ${new Date(post.date).toISOString()}
             draft: false
             toc: false
             tags: ${JSON.stringify(post.tags)}
             ---
-
-            ${post.content}
         `;
+
+    let content = `${metadata.replace(/^\s+/gm, '')}\n\n${post.content}`;
 
     if (post.type !== 'page') {
         contentPath = path.join(contentFolder, post.type, post.slug);
@@ -37,5 +37,5 @@ exports.createPost = (post, contentFolder = "content") => {
     console.log(`Generating ${post.title} with type ${post.type}...`);
     console.log(`Saving to ${contentPath}...`);
 
-    fs.writeFileSync(path.join(contentPath, "index.md"), content.replace(/^\s+/gm, ''));
+    fs.writeFileSync(path.join(contentPath, "index.md"), content);
 }
