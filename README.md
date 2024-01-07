@@ -1,4 +1,4 @@
-# Hugo publish action
+# Hugo Content from Issues
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N0RM9J1)
 
