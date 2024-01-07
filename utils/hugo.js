@@ -30,5 +30,5 @@ exports.createPost = (post, contentFolder = "content") => {
         fs.mkdirSync(contentPath, { recursive: true });
     }
 
-    fs.writeFileSync(path.join(contentPath, "index.md"), content);
+    fs.writeFileSync(path.join(contentPath, "index.md"), content.replace(/^\s+/gm, ''));
 }
