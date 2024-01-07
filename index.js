@@ -21,6 +21,7 @@ try {
     post.tags = tags;
     post.slug = slug;
     post.content = body;
+    post.type = type;
 
     createPost(post, "content");
 

@@ -5,13 +5,14 @@ exports.post = {
     title: '',
     date: '',
     content: '',
-    type: '',
+    type: 'posts',
     tags: [],
     slug: ''
 }
 
 exports.createPost = (post, contentFolder = "content") => {
     console.log(`Generating ${post.title}...`);
+    let contentPath = '';
 
     let content = `---
             title: ${post.title}
@@ -24,8 +25,12 @@ exports.createPost = (post, contentFolder = "content") => {
             ${post.content}
         `;
 
-    let contentPath = path.join(contentFolder, post.type, post.slug);
-
+    if (post.type !== 'page') {
+        contentPath = path.join(contentFolder, post.type, post.slug);
+    } else {
+        contentPath = path.join(contentFolder, post.type);
+    }
+    
     if (!fs.existsSync(contentPath)) {
         fs.mkdirSync(contentPath, { recursive: true });
     }
