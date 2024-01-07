@@ -1,5 +1,5 @@
-name: 'Hugo Publish'
-description: 'Create new content for Hugo website based on issues'
+name: 'Hugo Content from Issues'
+description: 'Create new content for Hugo website from GitHub issues'
 inputs:
   git-commiter-name: # Name of the commiter
     description: 'Name of the commiter'
