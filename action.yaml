@@ -1,5 +1,7 @@
 name: 'Create Hugo Content from Issues'
 description: 'Create new content for Hugo website from GitHub issues'
+icon: "command"
+color: 'orange'
 inputs:
   git-commiter-name: # Name of the commiter
     description: 'Name of the commiter'
