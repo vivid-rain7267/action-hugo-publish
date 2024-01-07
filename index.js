@@ -11,6 +11,9 @@ try {
     const type = labels.filter(label => label.startsWith('type:')).map(label => label.replace('type:', ''))[0];
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
 
+    if (type === '' || type === undefined) {
+        type = 'post';
+    }
 
     console.log(`Labels: ${labels}`);
     console.log(`Title: ${title}`);
