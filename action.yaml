@@ -1,5 +1,12 @@
 name: 'Hugo Publish'
 description: 'Create new content for Hugo website based on issues'
+inputs:
+  git-commiter-name: # Name of the commiter
+    description: 'Name of the commiter'
+    required: true
+  git-commiter-email:
+    description: 'Email of the commiter'
+    required: true
 runs:
   using: 'node20'
   main: 'index.js'

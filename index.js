@@ -33,8 +33,11 @@ try {
 }
 
 function createCommit(title) {
-    execSync('git config --global user.name "Hugo Publish Bot"');
-    execSync('git config --global user.email "hugo-publish@github.com"');
+    const commiterName = core.getInput('git-commiter-name');
+    const commiterEmail = core.getInput('git-commiter-email');
+
+    execSync('git config --global user.name "' + commiterName + '"');
+    execSync('git config --global user.email "' + commiterEmail + '"');
     execSync('git add .');
     execSync('git commit -m "New post: ' + title + '"');
 }
