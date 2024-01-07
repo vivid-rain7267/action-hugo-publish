@@ -10,6 +10,7 @@ try {
     const tags = labels.filter(label => label.startsWith('tag:')).map(label => label.replace('tag:', ''));
     const type = labels.filter(label => label.startsWith('type:')).map(label => label.replace('type:', ''))[0];
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    const created_at = github.context.payload.issue.created_at;
 
     if (type === '' || type === undefined) {
         type = 'post';
@@ -21,6 +22,7 @@ try {
     console.log(`Tags: ${tags}`);
     console.log(`Type: ${type}`);
     console.log(`Slug: ${slug}`);
+    console.log(`Created at: ${new Date(created_at).toISOString()}`);
 
 } catch (error) {
     core.setFailed(error.message);
