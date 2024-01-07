@@ -24,11 +24,11 @@ export const createPost = (post, contentFolder = "content") => {
             ${post.content}
         `;
 
-    let path = path.join(contentFolder, post.type, post.slug);
+    let contentPath = path.join(contentFolder, post.type, post.slug);
 
-    if (!fs.existsSync(path)) {
-        fs.mkdirSync(path, { recursive: true });
+    if (!fs.existsSync(contentPath)) {
+        fs.mkdirSync(contentPath, { recursive: true });
     }
 
-    fs.writeFileSync(path.join(path, "index.md"), content);
+    fs.writeFileSync(path.join(contentPath, "index.md"), content);
 }
