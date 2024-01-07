@@ -11,7 +11,6 @@ exports.post = {
 }
 
 exports.createPost = (post, contentFolder = "content") => {
-    console.log(`Generating ${post.title}...`);
     let contentPath = '';
 
     let content = `---
@@ -34,6 +33,9 @@ exports.createPost = (post, contentFolder = "content") => {
     if (!fs.existsSync(contentPath)) {
         fs.mkdirSync(contentPath, { recursive: true });
     }
+
+    console.log(`Generating ${post.title} with type ${post.type}...`);
+    console.log(`Saving to ${contentPath}...`);
 
     fs.writeFileSync(path.join(contentPath, "index.md"), content.replace(/^\s+/gm, ''));
 }
