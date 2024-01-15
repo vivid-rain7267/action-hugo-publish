@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const { post, createPost } = require('./utils/hugo.js');
 const { execSync } = require('child_process');
+const { slugify } = require('@themaymeow/transliterator');
 
 try {
     const labels = github.context.payload.issue.labels.map(label => label.name);
@@ -9,7 +10,7 @@ try {
     const body = github.context.payload.issue.body;
     const tags = labels.filter(label => label.startsWith('tag:')).map(label => label.replace('tag:', ''));
     const type = labels.filter(label => label.startsWith('type:')).map(label => label.replace('type:', ''))[0];
-    const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    const slug = slugify(title);
     const created_at = github.context.payload.issue.created_at;
 
     
