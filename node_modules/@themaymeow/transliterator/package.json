@@ -1,6 +1,6 @@
 {
   "name": "@themaymeow/transliterator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Small javascript library for transliterate and slugify accented languages.",
   "main": "transliterator.js",
   "scripts": {

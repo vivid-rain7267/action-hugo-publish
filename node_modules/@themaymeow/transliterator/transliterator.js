@@ -47,7 +47,7 @@ exports.slugify = (text, hasHashedSuffix = false) => {
     text = this.transliterate(text);
 
     if (hasHashedSuffix) {
-        text = text + generateRandomString()
+        text = text + ' ' + generateRandomString()
     }
 
     return text.toLowerCase().trim()
