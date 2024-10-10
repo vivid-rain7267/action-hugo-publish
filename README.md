@@ -31,6 +31,7 @@ jobs:
         with:
           git-commiter-name: "Hugo Bot"
           git-commiter-email: ${{ secrets.BotCommiterEmail }}
+          slug-hashed-suffix: "true"
 ```
 
 Action above will create new commit but you will need another action to create pull request . You can use [peter-evans/create-pull-request)](https://github.com/peter-evans/create-pull-request) actioin for that.

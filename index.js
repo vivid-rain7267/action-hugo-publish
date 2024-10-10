@@ -8,11 +8,19 @@ try {
     const labels = github.context.payload.issue.labels.map(label => label.name);
     const title = github.context.payload.issue.title;
     const body = github.context.payload.issue.body;
+    let slug = '';
     const tags = labels.filter(label => label.startsWith('tag:')).map(label => label.replace('tag:', ''));
     const type = labels.filter(label => label.startsWith('type:')).map(label => label.replace('type:', ''))[0];
-    const slug = slugify(title);
     const created_at = github.context.payload.issue.created_at;
 
+    // create slug
+    const hasHashedSuffix = core.getInput('slug-hashed-suffix');
+
+    if (hasHashedSuffix === 'true') {
+        slug = slugify(title , true)
+    } else {
+        slug = slugify(title)
+    }
     
 
     post.title = title;
