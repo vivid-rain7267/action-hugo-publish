@@ -34,12 +34,25 @@ exports.transliterate = (text) => {
     return text;
 }
 
-exports.slugify = (text) => {
+const generateRandomString = (length = 8) => {
+    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
+exports.slugify = (text, hasHashedSuffix = false) => {
     text = this.transliterate(text);
+
+    if (hasHashedSuffix) {
+        text = text + generateRandomString()
+    }
 
     return text.toLowerCase().trim()
     .replace(/\s+/g, '-')
-    .replace(/[^-a-zа-я\u0370-\u03ff\u1f00-\u1fff]+/g, '')
+    .replace(/[^-a-z0-9а-я\u0370-\u03ff\u1f00-\u1fff]+/g, '')
     .replace(/--+/g, '-')
     .replace(/^-+/, '')
     .replace(/-+$/, '');

@@ -10,6 +10,10 @@ inputs:
   git-commiter-email:
     description: 'Email of the commiter'
     required: true
+  slug-hashed-suffix:
+    description: 'Whether to use append hash into post suffix or not'
+    required: true
+    default: 'false'
 runs:
   using: 'node20'
   main: 'index.js'
