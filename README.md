@@ -10,6 +10,7 @@ Create new content for Hugo website based on issues labeled with `action:publish
 | ---- | ---- | ---- |
 | `git-commiter-name` | Name for commiter of changes | `true` |
 | `git-commiter-email` | Commiters email | `true` |
+| `path-to-content` | Commiters email | `false`, default: `content` |
 
 Here is an example
 
