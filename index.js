@@ -33,7 +33,8 @@ try {
         post.type = type;
     }
 
-    createPost(post, "content");
+    const pathToContent = core.getInput('path-to-content');
+    createPost(post, pathToContent);
 
     createCommit(post.title);
 
